@@ -1,6 +1,7 @@
 package com.nguyendinhdoan.recyclerviewpratice;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -51,6 +52,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View v) {
                 Log.d(LOG_TAG, "onclick: " + position);
                 Toast.makeText(mContext, "name: " + imageModel.getImageName(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(mContext, GalleryActivity.class);
+                intent.putExtra("image_url", imageModel.getImageName());
+                intent.putExtra("image_name", imageModel.getImageUrl());
+                mContext.startActivity(intent);
             }
         });
     }
