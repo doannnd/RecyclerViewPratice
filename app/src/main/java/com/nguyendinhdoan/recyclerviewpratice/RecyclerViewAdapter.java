@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -40,8 +41,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
         final ImageModel imageModel = mImageList.get(position);
 
+        RequestOptions requestOptions = new RequestOptions().placeholder(R.drawable.ic_launcher_background);
+
         // load image
-        Glide.with(mContext).asBitmap().load(imageModel.getImageUrl()).into(viewHolder.image);
+        Glide.with(mContext).asBitmap().load(imageModel.getImageUrl())
+                .apply(requestOptions)
+                .into(viewHolder.image);
 
         // load image name
         viewHolder.imageName.setText(imageModel.getImageName());
